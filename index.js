@@ -29,6 +29,37 @@ async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
+    const usersCollection = client.db("summerCamp").collection("users");
+    const classesCollection = client.db("summerCamp").collection("classes");
+
+    //   Save user email and role in DB
+    app.put("/users/:email", async (req, res) => {
+      const email = req.params.email;
+      const user = req.body;
+      const query = { email: email };
+      const options = { upsert: true };
+      const updateDoc = {
+        $set: user,
+      };
+      const result = await usersCollection.updateOne(query, updateDoc, options);
+      console.log(result);
+      res.send(result);
+    });
+
+    // get all class from db
+    app.get("/classes", async (req, res) => {
+      const result = await classesCollection.find().toArray();
+      res.send(result);
+    });
+
+    //   Save a class in db
+    app.post("/classes", async (req, res) => {
+      const myClass = req.body;
+      console.log(myClass);
+      const result = await classesCollection.insertOne(myClass);
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log(
