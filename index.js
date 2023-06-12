@@ -66,7 +66,7 @@ async function run() {
       res.send(result);
     });
 
-    //   get a single user from db
+    // get a single user from database
     app.get(`/users/:email`, async (req, res) => {
       const email = req.params.email;
       const query = { email: email };
