@@ -75,7 +75,7 @@ async function run() {
       res.send(result);
     });
 
-    //   Save a class in db
+    //   Save a class in database
     app.post("/classes", async (req, res) => {
       const myClass = req.body;
       console.log(myClass);
