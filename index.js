@@ -4,7 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 const port = process.env.PORT || 5000;
 
-// Middleware options
+// All Middleware options
 const corsOptions = {
   origin: "*",
   credentials: true,
@@ -33,7 +33,7 @@ async function run() {
     const usersCollection = client.db("summerCamp").collection("users");
     const classesCollection = client.db("summerCamp").collection("classes");
 
-    //   Save user email and role in DB
+    //  Save user email and role in DB
     app.put("/users/:email", async (req, res) => {
       const email = req.params.email;
       const user = req.body;
