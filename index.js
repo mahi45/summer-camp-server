@@ -46,7 +46,7 @@ async function run() {
       res.send(result);
     });
 
-    // get all class from db
+    // get all class from database
     app.get("/classes", async (req, res) => {
       const result = await classesCollection.find().toArray();
       res.send(result);
