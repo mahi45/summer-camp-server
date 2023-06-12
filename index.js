@@ -33,7 +33,7 @@ async function run() {
     const usersCollection = client.db("summerCamp").collection("users");
     const classesCollection = client.db("summerCamp").collection("classes");
 
-    //  Save user email and role in DB
+    //  Save user email and role in Database
     app.put("/users/:email", async (req, res) => {
       const email = req.params.email;
       const user = req.body;
